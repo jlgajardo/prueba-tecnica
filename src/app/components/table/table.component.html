@@ -10,11 +10,11 @@
   <ng-container matColumnDef="expandedDetail">
     <mat-cell *matCellDef="let element">
       <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-        <div class="user-detail mt-3">
+        <div class="user-detail mt-3 mat-elevation-z2">
           <div>Telefono: {{element.telefono}}</div>
           <div>Rut: {{element.rut | rut}}</div>
           <div>Fecha Nacimiento: {{element.fechaNacimiento}}</div>
-          <div>Dirección: {{element.direccion.calle}} #{{element.direccion.numero}}, {{element.direccion.comuna}}</div>
+          <div>Dirección: {{element.direccion.calle}} # {{element.direccion.numero}}, {{element.direccion.comuna}}</div>
 
         </div>
       </div>
