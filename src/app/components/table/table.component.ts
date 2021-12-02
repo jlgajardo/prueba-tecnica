@@ -18,7 +18,7 @@ export class TableComponent {
 
 
   @Input() dataSource: UserModel[] = [];
-  columnsToDisplay = ['id', 'nombre', 'apellido', 'activo'];
+  columnsToDisplay = ['id', 'nombre', 'apellido'];
   expandedElement: any[] = [];
 
 

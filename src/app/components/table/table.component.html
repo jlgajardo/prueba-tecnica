@@ -11,6 +11,14 @@
     <mat-cell *matCellDef="let element">
       <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
         <div class="user-detail mt-3 mat-elevation-z2">
+          <div>Activo:
+            <mat-icon [class.text-danger]="element.activo !==1"
+                      [class.text-success]="element.activo ===1"
+                      aria-hidden="false"
+                      class="small">
+              {{element.activo === 1 ? 'check_circle' : 'highlight_off'}}
+            </mat-icon>
+          </div>
           <div>Telefono: {{element.telefono}}</div>
           <div>Rut: {{element.rut | rut}}</div>
           <div>Fecha Nacimiento: {{element.fechaNacimiento}}</div>

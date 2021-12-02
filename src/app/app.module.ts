@@ -19,6 +19,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
 
 import localeEs from '@angular/common/locales/es-CL'
 import {registerLocaleData} from '@angular/common'
+import {MatIconModule} from "@angular/material/icon";
 
 registerLocaleData(localeEs, 'es-CL')
 
@@ -40,7 +41,8 @@ registerLocaleData(localeEs, 'es-CL')
     MatTableModule,
     MatRadioModule,
     MatCardModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatIconModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-CL'}
