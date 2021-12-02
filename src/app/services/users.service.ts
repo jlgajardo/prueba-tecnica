@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserModel} from "../models/user.model";
-import {NgxSpinnerService} from "ngx-spinner";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -9,7 +8,7 @@ import {map} from "rxjs/operators";
 })
 export class UsersService {
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) {
+  constructor(private http: HttpClient) {
   }
 
 
@@ -19,11 +18,19 @@ export class UsersService {
       .pipe(map((users) => {
 
 
-        return users.map(user => ({
-          ...user,
-          fechaNacimiento: this.isValidDate(user.fechaNacimiento),
-          rutValido: this.retornaDV(user.rut)
-        }))
+        return users.map((user: any) => {
+
+          const {comuna, nombre} = user.direccion
+          return {
+            ...user,
+            fechaNacimiento: this.isValidDate(user.fechaNacimiento),
+            rutValido: this.retornaDV(user.rut),
+            direccion: {
+              ...user.direccion,
+              comuna: comuna ? comuna : nombre
+            }
+          }
+        })
       }))
   }
 
