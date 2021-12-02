@@ -21,7 +21,8 @@ export class UsersService {
 
         return users.map(user => ({
           ...user,
-          fechaNacimiento: this.isValidDate(user.fechaNacimiento)
+          fechaNacimiento: this.isValidDate(user.fechaNacimiento),
+          rutValido: this.retornaDV(user.rut)
         }))
       }))
   }
@@ -43,6 +44,47 @@ export class UsersService {
       return 'Fecha Invalida'
     }
     return date
+  }
+
+
+  private retornaDV(rut: any): any {
+
+    const dot = /\./gi;
+    const dash = /-/gi;
+    const nuevoRut = rut.replaceAll(dot, '').replaceAll(dash, '');
+    const dv = `${nuevoRut.substr(nuevoRut.length - 1)}`.toLocaleLowerCase();
+    let dvValido
+    const rutArray = Array.from(
+      nuevoRut.substr(0, nuevoRut.length - 1)
+    ).reverse();
+
+
+    let multiplicador = 2;
+    let total = 0;
+    rutArray.forEach(digito => {
+
+
+      total += Number(digito) * multiplicador;
+      multiplicador++;
+      if (multiplicador === 8) {
+        multiplicador = 2;
+      }
+
+    });
+
+    const dvCalculado = (11 - (total % 11)).toString();
+
+    if (dvCalculado === '10') {
+
+      dvValido = 'k';
+    } else if (dvCalculado === '11') {
+      dvValido = '0';
+    } else {
+      dvValido = `${dvCalculado}`;
+    }
+
+    return dv === dvValido
+
   }
 
 

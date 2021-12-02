@@ -7,6 +7,7 @@ export interface UserModel {
   fechaNacimiento: string;
   direccion: Direccion;
   activo: number;
+  rutValido?: boolean
 }
 
 

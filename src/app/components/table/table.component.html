@@ -20,7 +20,14 @@
             </mat-icon>
           </div>
           <div>Telefono: {{element.telefono}}</div>
-          <div>Rut: {{element.rut | rut}}</div>
+          <div>Rut: {{element.rut | rut}}
+            <mat-icon [class.text-danger]="!element.rutValido"
+                      [class.text-success]="element.rutValido"
+                      aria-hidden="false"
+                      class="small">
+              {{element.rutValido ? 'check_circle' : 'highlight_off'}}
+            </mat-icon>
+          </div>
           <div>Fecha Nacimiento: {{element.fechaNacimiento}}</div>
           <div>Dirección: {{element.direccion.calle}} # {{element.direccion.numero}}, {{element.direccion.comuna}}</div>
 

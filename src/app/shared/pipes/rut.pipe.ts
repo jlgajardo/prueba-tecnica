@@ -6,8 +6,6 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class RutPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-
-
     if (value === '-') {
       return;
     }
@@ -38,9 +36,11 @@ export class RutPipe implements PipeTransform {
       rutFinal = rutAux;
       vuelta++;
     });
+    const rutSinFormato: any = rutFinal.toString().replace(colon, '')
+
+    return `${rutSinFormato}${dv}`;
 
 
-    return `${rutFinal.toString().replace(colon, '')}${dv}`;
   }
 
 }

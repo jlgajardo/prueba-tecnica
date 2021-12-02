@@ -7,8 +7,6 @@ import {HeaderComponent} from './shared/header/header.component';
 import {UsersComponent} from './components/users/users.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import {FilterPipe} from "./pipes/filter.pipe";
-import {RutPipe} from "./pipes/rut.pipe";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TableComponent} from './components/table/table.component';
 import {MatTableModule} from "@angular/material/table";
@@ -20,6 +18,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import localeEs from '@angular/common/locales/es-CL'
 import {registerLocaleData} from '@angular/common'
 import {MatIconModule} from "@angular/material/icon";
+import {FilterPipe} from "./shared/pipes/filter.pipe";
+import {RutPipe} from "./shared/pipes/rut.pipe";
 
 registerLocaleData(localeEs, 'es-CL')
 
