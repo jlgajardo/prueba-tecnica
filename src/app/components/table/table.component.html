@@ -28,7 +28,16 @@
               {{element.rutValido ? 'check_circle' : 'highlight_off'}}
             </mat-icon>
           </div>
-          <div>Fecha Nacimiento: {{element.fechaNacimiento}}</div>
+          <div>Fecha Nacimiento: {{element.fechaNacimiento}}
+
+            <mat-icon [class.text-danger]="!element.fechaNacimientoValida"
+                      [class.text-success]="element.fechaNacimientoValida"
+                      aria-hidden="false"
+                      class="small">
+              {{element.fechaNacimientoValida ? 'check_circle' : 'highlight_off'}}
+            </mat-icon>
+
+          </div>
           <div>Dirección: {{element.direccion.calle}} # {{element.direccion.numero}}, {{element.direccion.comuna}}</div>
 
         </div>

@@ -23,7 +23,7 @@ export class UsersService {
           const {comuna, nombre} = user.direccion
           return {
             ...user,
-            fechaNacimiento: this.isValidDate(user.fechaNacimiento),
+            fechaNacimientoValida: this.isValidDate(user.fechaNacimiento),
             rutValido: this.retornaDV(user.rut),
             direccion: {
               ...user.direccion,
@@ -40,17 +40,14 @@ export class UsersService {
     const [day, month, year] = date.split('/')
 
     if (parseInt(day) <= 0 || parseInt(day) >= 32) {
-      return 'Fecha Invalida'
+      return false
     }
     if (parseInt(month) <= 0 || parseInt(month) >= 13) {
-      return 'Fecha Invalida'
+      return false
     }
 
+    return !(parseInt(year) <= 0 || parseInt(year) > new Date().getFullYear());
 
-    if (parseInt(year) <= 0 || parseInt(year) > new Date().getFullYear()) {
-      return 'Fecha Invalida'
-    }
-    return date
   }
 
 
