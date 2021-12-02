@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -9,11 +9,18 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {FilterPipe} from "./pipes/filter.pipe";
 import {RutPipe} from "./pipes/rut.pipe";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableComponent } from './components/table/table.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TableComponent} from './components/table/table.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCardModule} from "@angular/material/card";
+import {NgxSpinnerModule} from "ngx-spinner";
+
+
+import localeEs from '@angular/common/locales/es-CL'
+import {registerLocaleData} from '@angular/common'
+
+registerLocaleData(localeEs, 'es-CL')
 
 @NgModule({
   declarations: [
@@ -32,10 +39,14 @@ import {MatCardModule} from "@angular/material/card";
     BrowserAnimationsModule,
     MatTableModule,
     MatRadioModule,
-    MatCardModule
+    MatCardModule,
+    NgxSpinnerModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es-CL'}
+  ],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }
