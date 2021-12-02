@@ -1,0 +1,33 @@
+::ng-deep {
+
+  .mat-table {
+    width: 100%;
+  }
+
+  .mat-row.detail-row {
+    min-height: 0;
+  }
+
+  .mat-row.element-row:not(.expanded-row):hover {
+    background: #777;
+  }
+
+  .mat-row.element-row:not(.expanded-row):active {
+    background: #efefef;
+  }
+
+  .element-row .mat-cell {
+    border-bottom-width: 0;
+  }
+
+  .element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+
+  .user-detail {
+    padding: 0 1rem;
+    height: 6rem;
+  }
+
+}

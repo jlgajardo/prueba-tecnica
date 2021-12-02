@@ -1,0 +1,22 @@
+<div class="container__users">
+
+  <div class="lista__users">
+    <div class="row mt-5 mb-4">
+      <div class="col-3">
+        <input [(ngModel)]="filteredUser" class="form-control" type="text">
+      </div>
+      <div class="col-9">
+        <div class="check">
+          <mat-radio-group [(ngModel)]="value" class="d-flex">
+            <mat-radio-button class="example-margin mx-2" value="nombre">Nombre</mat-radio-button>
+            <mat-radio-button class="example-margin mx-2" value="apellido">Apellido</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="(users$ |async) as users">
+      <app-table [dataSource]="users |filter: filteredUser:value"></app-table>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.container__users {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.lista__users {
+  width: 80%;
+  padding: .8rem;
+}
+
+
+.check {
+  margin-top: .5rem;
+  display: flex;
+}

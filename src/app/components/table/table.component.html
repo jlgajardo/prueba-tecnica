@@ -1,0 +1,36 @@
+<mat-table
+  [dataSource]="dataSource" class="mat-elevation-z8"
+  multiTemplateDataRows>
+  <ng-container *ngFor="let column of columnsToDisplay" matColumnDef="{{column}}">
+    <mat-header-cell *matHeaderCellDef> {{column | uppercase}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <mat-cell *matCellDef="let element">
+      <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="user-detail mt-3">
+          <div>Telefono: {{element.telefono}}</div>
+          <div>Rut: {{element.rut | rut}}</div>
+          <div>Fecha Nacimiento: {{element.fechaNacimiento}}</div>
+          <div>Dirección: {{element.direccion.calle}} #{{element.direccion.numero}}, {{element.direccion.comuna}}</div>
+
+        </div>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row (click)="expandedElement = expandedElement === element ? null : element"
+           *matRowDef="let element; columns: columnsToDisplay;"
+           [class.expanded-row]="expandedElement === element"
+           class="element-row">
+  </mat-row>
+  <mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></mat-row>
+</mat-table>
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
