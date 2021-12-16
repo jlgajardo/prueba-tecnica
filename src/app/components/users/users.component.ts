@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
   users$!: Observable<UserModel[]>
   filteredUser: string = '';
   value: string = 'nombre';
+  cantidad: string = 'si';
 
   constructor(private usersService: UsersService) {
   }
