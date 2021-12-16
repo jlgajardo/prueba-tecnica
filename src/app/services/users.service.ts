@@ -2,6 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserModel} from "../models/user.model";
 import {map} from "rxjs/operators";
+import {environment} from "../../environments/environment";
+
+
+const URL = environment.url;
 
 @Injectable({
   providedIn: 'root'
@@ -14,24 +18,26 @@ export class UsersService {
 
   findAllUsers() {
 
-    return this.http.get<UserModel[]>('https://my-json-server.typicode.com/HaibuSolutions/prueba-tecnica-sf/user')
-      .pipe(map((users) => {
+    return this.http.get<UserModel[]>(URL)
+      .pipe(
+        map((e: any) => e.data),
+        map((users) => {
 
 
-        return users.map((user: any) => {
+          return users.map((user: any) => {
 
-          const {comuna, nombre} = user.direccion
-          return {
-            ...user,
-            fechaNacimientoValida: this.isValidDate(user.fechaNacimiento),
-            rutValido: this.retornaDV(user.rut),
-            direccion: {
-              ...user.direccion,
-              comuna: comuna ? comuna : nombre
+            const {comuna, nombre} = user.direccion
+            return {
+              ...user,
+              fechaNacimientoValida: this.isValidDate(user.fechaNacimiento),
+              rutValido: this.retornaDV(user.rut),
+              direccion: {
+                ...user.direccion,
+                comuna: comuna ? comuna : nombre
+              }
             }
-          }
-        })
-      }))
+          })
+        }))
   }
 
 
